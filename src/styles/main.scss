@@ -7,93 +7,114 @@
 }
 
 body {
-  margin: 70px;
+  margin: 60px;
   background: $c-gray;
 }
 
-.header {
-  display: flex;
-  justify-content: center;
+.game {
+  position: relative;
+
+  &__header {
+    width: 400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__field {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: cornflowerblue;
+  }
+
+  &__excel {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 2px;
+  }
+
+  &__snake-body {
+    background: url("../images/snake-body.jpg");
+    background-size: cover;
+    border-radius: 10%;
+  }
+
+  &__snake-head {
+    background: url("../images/snake-head.png");
+    background-size: cover;
+    border-radius: 10%;
+  }
+
+  &__mouse {
+    background: url("../images/surfing-mouse.png");
+    background-size: cover;
+  }
+
+  &__score {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+  }
+
+  &__lose-msg {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f7f7f7;
+    border-radius: 1px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  &__lose-img {
+    width: 400px;
+    height: 250px;
+    background: url("../images/lose.png") no-repeat;
+    background-size: cover;
+    animation: showIn 1s ease-in-out forwards;
+  }
+
+  &__reset {
+    width: 170px;
+    height: 40px;
+    background: black;
+    color: white;
+    font-size: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-family: 'VT323', monospace;
+  }
 }
 
-.field {
-  width: 400px;
-  height: 400px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: cornflowerblue;
-}
-
-.excel {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 2px;
-}
-
-.snake-body {
-  background: url("../images/snake-body.jpg");
-  background-size: cover;
-  border-radius: 10%;
-}
-
-.snake-head {
-  background: url("../images/snake-head.png");
-  background-size: cover;
-  border-radius: 10%;
-}
-
-.mouse {
-  background: url("../images/surfing-mouse.png");
-  background-size: cover;
-}
-
-.score {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-}
-
-.lose-msg {
-  width: 640px;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #f7f7f7;
-  animation: anim 0.5s ease-in-out;
-  border-radius: 10px;
-  z-index: 1;
-}
-
-.lose-img {
-  width: 640px;
-  height: 410px;
-  background: url("../images/lose.png") no-repeat;
-  background-size: cover;
-}
-
-@keyframes anim {
+@keyframes showIn {
   0% {
-    background-size: 0;
+    transform: translate(-575px, 0);
   }
 
-  70% {
-    background-size: 80%;
+  50% {
+    transform: translate(0, 0);
   }
 
-  90% {
-    background-size: 70%;
+  75% {
+    transform: translate(-55px, 0);
   }
 
   100% {
-    background-size: 80%;
+    transform: translate(0, 0);
   }
 }
