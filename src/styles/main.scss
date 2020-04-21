@@ -2,6 +2,98 @@
 @import "fonts";
 @import "typography";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 70px;
   background: $c-gray;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.field {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: cornflowerblue;
+}
+
+.excel {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.snake-body {
+  background: url("../images/snake-body.jpg");
+  background-size: cover;
+  border-radius: 10%;
+}
+
+.snake-head {
+  background: url("../images/snake-head.png");
+  background-size: cover;
+  border-radius: 10%;
+}
+
+.mouse {
+  background: url("../images/surfing-mouse.png");
+  background-size: cover;
+}
+
+.score {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.lose-msg {
+  width: 640px;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f7f7f7;
+  animation: anim 0.5s ease-in-out;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.lose-img {
+  width: 640px;
+  height: 410px;
+  background: url("../images/lose.png") no-repeat;
+  background-size: cover;
+}
+
+@keyframes anim {
+  0% {
+    background-size: 0;
+  }
+
+  70% {
+    background-size: 80%;
+  }
+
+  90% {
+    background-size: 70%;
+  }
+
+  100% {
+    background-size: 80%;
+  }
 }
