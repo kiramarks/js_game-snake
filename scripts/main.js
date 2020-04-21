@@ -1,19 +1,18 @@
 'use strict';
 
-// field
+const game = document.querySelector('.game');
 const field = document.createElement('div');
-document.body.appendChild(field);
-field.classList.add('field');
+const excel = document.getElementsByClassName('game__excel');
 
-// excel
+game.appendChild(field);
+field.classList.add('game__field');
+
 for (let i = 0; i < 100; i++) {
-  const excel = document.createElement('div');
-  field.appendChild(excel);
-  excel.classList.add('excel');
-}
+  const cell = document.createElement('div');
 
-// coords
-const excel = document.getElementsByClassName('excel');
+  field.appendChild(cell);
+  cell.classList.add('game__excel');
+}
 
 let x = 1,
   y = 10;
@@ -48,10 +47,10 @@ const snakeBody = [
 ];
 
 // paint the snake
-snakeBody[0].classList.add('snake-head');
+snakeBody[0].classList.add('game__snake-head');
 
 for (let i = 0; i < snakeBody.length; i++) {
-  snakeBody[i].classList.add('snake-body');
+  snakeBody[i].classList.add('game__snake-body');
 }
 
 let mouse;
@@ -70,14 +69,14 @@ function createMouse() {
     '[posX = "' + mouseCoords[0] + '"][posY = "' + mouseCoords[1] + '"]');
 
   // while loop to avoid the same snake's and mouse's coords
-  while (mouse.classList.contains('snake-body')) {
+  while (mouse.classList.contains('game__snake-body')) {
     const mouseCoords = generateMouse();
 
     mouse = document.querySelector(
       '[posX = "' + mouseCoords[0] + '"][posY = "' + mouseCoords[1] + '"]');
   }
 
-  mouse.classList.add('mouse');
+  mouse.classList.add('game__mouse');
 }
 
 createMouse();
@@ -85,17 +84,15 @@ createMouse();
 let direction = 'right';
 let steps = false;
 let score = 0;
-const scoreTable = document.createElement('span');
+const scoreTable = document.querySelector('.game__score');
 
-document.body.appendChild(scoreTable);
-scoreTable.classList.add('score');
 scoreTable.textContent = `Score: ${score}`;
 
 function move() {
   const coords = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
 
-  snakeBody[0].classList.remove('snake-head');
-  snakeBody[snakeBody.length - 1].classList.remove('snake-body');
+  snakeBody[0].classList.remove('game__snake-head');
+  snakeBody[snakeBody.length - 1].classList.remove('game__snake-body');
   snakeBody.pop();
 
   if (direction === 'right') {
@@ -135,7 +132,7 @@ function move() {
   // eating mouse
   if (snakeBody[0].getAttribute('posX') === mouse.getAttribute('posX')
   && snakeBody[0].getAttribute('posY') === mouse.getAttribute('posY')) {
-    mouse.classList.remove('mouse');
+    mouse.classList.remove('game__mouse');
 
     const a = snakeBody[snakeBody.length - 1].getAttribute('posX');
     const b = snakeBody[snakeBody.length - 1].getAttribute('posY');
@@ -148,28 +145,30 @@ function move() {
     scoreTable.textContent = `Score: ${score}`;
   }
 
-  if (snakeBody[0].classList.contains('snake-body')) {
-    setTimeout(() => {
-      const loseMsg = document.createElement('div');
-      document.body.appendChild(loseMsg);
-      loseMsg.classList.add('lose-msg');
-      loseMsg.innerHTML = `
+  if (snakeBody[0].classList.contains('game__snake-body')) {
+    const loseMsg = document.createElement('div');
+
+    game.appendChild(loseMsg);
+    loseMsg.classList.add('game__lose-msg');
+
+    loseMsg.innerHTML = `
       <h1>Ooops! You lose!</h1>
-      <div class="lose-img"></div>
-      <h2>Your score is ${score}</h2>
+      <div class="game__lose-img"></div>
+      <button class="game__reset">Play Again</button>
       `;
-      // loseAlert.classList.add('lose-alert');
-    }, 300);
+
+    document.body.querySelector('.game__reset').addEventListener('click', () => {
+      window.location.reload();
+    });
 
     clearInterval(interval);
-    mouse.style.background = 'url(../images/lose.png) center no-repeat';
-    mouse.style.backgroundSize = 'cover';
+
   }
 
-  snakeBody[0].classList.add('snake-head');
+  snakeBody[0].classList.add('game__snake-head');
 
   for (let i = 0; i < snakeBody.length; i++) {
-    snakeBody[i].classList.add('snake-body');
+    snakeBody[i].classList.add('game__snake-body');
   }
 
   steps = true;
