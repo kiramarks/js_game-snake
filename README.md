@@ -1,1 +1,1 @@
-- [PLAY 🐍](https://kiramarks.github.io/js_game-snake/)
+[🐍 PLAY 🐍](https://kiramarks.github.io/js_game-snake/)
